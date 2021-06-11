@@ -25,7 +25,8 @@ import lombok.Setter;
 @Getter @Setter
 @Entity(name="user")
 public class User implements Serializable {
-	
+
+
 	/**
 	 * 
 	 */

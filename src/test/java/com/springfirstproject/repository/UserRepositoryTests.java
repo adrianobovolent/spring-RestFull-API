@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.springfirstproject.domain.Request;
 import com.springfirstproject.domain.User;
 import com.springfirstproject.domain.enuns.Role;
 
@@ -27,15 +26,15 @@ public class UserRepositoryTests {
 	@Test
 	public void AsaveTest() {
 		
-		User user = new User(null, "Adriano", "adrianobovolent@gmail.com", "123", Role.ADMINISTRATOR, null, null);
+		User user = new User(null, "Adriano", "adrianobov@gmail.com", "123", Role.ADMINISTRATOR, null, null);
 		User createdUser = userRepository.save(user);
 		
-		assertThat(createdUser.getId()).isEqualTo(1L);
+		assertThat(createdUser.getId()).isEqualTo(7L);
 	}
 
 	@Test
 	public void updateTest() {
-		User user = new User(null, "Adriano Bovolenta", "adrianobovolent@gmail.com", "123", Role.ADMINISTRATOR, null, null);
+		User user = new User(7L, "Adriano Bovolenta", "adrianobov@gmail.com", "123", Role.ADMINISTRATOR, null, null);
         User updateUser = userRepository.save(user);
         
         assertThat(updateUser.getName()).isEqualTo("Adriano Bovolenta");
@@ -45,7 +44,7 @@ public class UserRepositoryTests {
 	@Test
 	public void getByIdTest() {
 		
-		Optional<User> result = userRepository.findById(1L);
+		Optional<User> result = userRepository.findById(7L);
 		User user = result.get();
 		
 		assertThat(user.getPassword()).isEqualTo("123");
@@ -65,9 +64,9 @@ public class UserRepositoryTests {
 	@Test
 	public void loginTest() {
 		
-		Optional<User> result = userRepository.login("adrianobovolent@gmail.com", "123");
+		Optional<User> result = userRepository.login("adrianobov@gmail.com", "123");
 		User loggedUser = result.get();
 		
-		assertThat(loggedUser.getId()).isEqualTo(1L);
+		assertThat(loggedUser.getId()).isEqualTo(7L);
 	}
 }
